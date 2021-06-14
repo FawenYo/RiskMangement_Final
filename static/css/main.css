@@ -1,0 +1,395 @@
+@charset "UTF-8";
+html,
+body {
+    font-family: "Helvetica Neue", Helvetica, '微軟正黑體', '新細明體', Arial, sans-serif;
+    background: #f5f5f5;
+    height: 100%;
+}
+
+.short-content {
+    min-height: 90%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+/* Footer style start */
+
+.footer {
+    margin: 0 10px;
+    padding: 30px 0;
+    width: 100%;
+    height: 5%;
+    border-top: 1px solid #E0E0E0;
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+footer p {
+    font-size: 18px;
+}
+
+
+/*
+ *  Usage:
+ *
+ *    <div class="sk-folding-cube">
+ *      <div class="sk-cube1 sk-cube"></div>
+ *      <div class="sk-cube2 sk-cube"></div>
+ *      <div class="sk-cube4 sk-cube"></div>
+ *      <div class="sk-cube3 sk-cube"></div>
+ *    </div>
+ *
+ */
+
+.sk-folding-cube {
+    margin: 80px auto;
+    width: 80px;
+    height: 80px;
+    position: relative;
+    /*-webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);*/
+}
+
+.sk-folding-cube .sk-cube {
+    float: left;
+    width: 50%;
+    height: 50%;
+    position: relative;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.sk-folding-cube .sk-cube:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4a9c64;
+    -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+    animation: sk-foldCubeAngle 2.4s infinite linear both;
+    -webkit-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.sk-folding-cube .sk-cube2 {
+    -webkit-transform: scale(1.1) rotateZ(90deg);
+    transform: scale(1.1) rotateZ(90deg);
+}
+
+.sk-folding-cube .sk-cube3 {
+    -webkit-transform: scale(1.1) rotateZ(180deg);
+    transform: scale(1.1) rotateZ(180deg);
+}
+
+.sk-folding-cube .sk-cube4 {
+    -webkit-transform: scale(1.1) rotateZ(270deg);
+    transform: scale(1.1) rotateZ(270deg);
+}
+
+.sk-folding-cube .sk-cube2:before {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.sk-folding-cube .sk-cube3:before {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.sk-folding-cube .sk-cube4:before {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+@-webkit-keyframes sk-foldCubeAngle {
+    0%,
+    10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-foldCubeAngle {
+    0%,
+    10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+    25%,
+    75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+    90%,
+    100% {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@-o-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+ul,
+li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+section p {
+    font-size: 18px;
+    color: #454545;
+}
+
+section h1.heading {
+    font-size: 24px;
+    color: #3b4952;
+    font-family: "微軟正黑體", Arial, 'Roboto', sans-serif;
+    line-height: 30px;
+    border-bottom: 5px solid #4a9c64;
+    margin-top: 0px;
+    padding-bottom: 15px;
+}
+
+.predictBtn {
+    border-radius: 10px;
+    font-size: 16px;
+    width: 100%;
+}
+
+
+/* form style start */
+
+.form {
+    width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.form-base {
+    width: 330px;
+    background-color: #FFF;
+    padding: 15px 23px 25px 23px;
+}
+
+.form-base h2 {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form-base>img {
+    display: block;
+    width: 128px;
+    height: 128px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-control {
+    width: 100%;
+    border-radius: 4px;
+    padding: 10px 15px 10px 15px;
+    border: 1px solid #CCC;
+    color: #55606e;
+    font-size: 14px;
+    height: 50px;
+    /*padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 34px;
+    padding-right: 12px;*/
+    -webkit-transition: border-color ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s;
+    transition: border-color ease-in-out .15s;
+}
+
+.form-control :focus {
+    border-color: #4a9c64;
+    /*background-color: #fafafa;*/
+    outline: 0 !important;
+    box-shadow: none;
+}
+
+.form-control :focus~.fas {
+    color: #239ad1;
+}
+
+.form-control-feedback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    float: right;
+}
+
+
+/* form style end */
+
+
+/* rwd style start */
+
+@media (max-width: 1025px) {
+    .mdl-layout__drawer-button {
+        display: inline-block !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    .mdl-layout__drawer-button {
+        display: none !important;
+    }
+}
+
+
+/* rwd style end */
+
+
+/* NavBar style start */
+
+.mdl-layout__drawer-button .material-icons {
+    color: #767777 !important;
+}
+
+.mdl-layout-title {
+    color: #757575 !important;
+    font-weight: 700 !important;
+}
+
+.mdl-layout__header {
+    z-index: 1 !important;
+    background-color: #FFFFFF !important;
+}
+
+.mdl-navigation__link {
+    color: #757575 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+}
+
+
+/* NavBar style end */

@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/Users/fawenyo/.pyenv/shims/python3",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.analysis.completeFunctionParens": true,
+    "git.ignoreLimitWarning": true
+}

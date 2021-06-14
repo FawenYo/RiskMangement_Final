@@ -1,0 +1,9 @@
+Flask
+dash
+plotly
+gunicorn
+Werkzeug
+numpy
+dash-bootstrap-components
+pandas
+redis
