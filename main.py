@@ -26,9 +26,6 @@ def api_set_server():
 
 @app.route("/api/get_server", methods=["GET"])
 def api_get_server():
-    # r = redis.Redis.from_url(os.getenv("REDIS_URL"))
-    r = redis.Redis.from_url(
-        "redis://:pb5969aca57e58415aaa13b9fd67c5bad6e600d5f0dd11f127b428c91b7d609dd@ec2-54-221-236-65.compute-1.amazonaws.com:13469"
-    )
+    r = redis.Redis.from_url(os.getenv("REDIS_URL"))
     server_url = r.get("colab_server").decode("utf-8")
     return {"server_url": server_url}

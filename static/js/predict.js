@@ -3,18 +3,13 @@ var paragraph = "";
 var question = "";
 
 $(document).ready(function() {
-    // Get server IP every 5 seconds
-    window.setInterval((() => {
-        getServer();
-    }), 5000)
-
     $("#predictBtn").click(function() {
         $(this).prop('disabled', true);
         $(this).css("display", "none");
         $("#loading_anim").css("display", "inline-block");
         paragraph = $("#paragraph").val()
         question = $("#question").val()
-        predictGPU();
+        getServer();
     });
 
     $("#predictBtn2").click(function() {
@@ -35,6 +30,7 @@ function getServer() {
         method: "GET",
         success: function(data) {
             DOMAIN = data.server_url
+            predictGPU();
         },
     });
 }
@@ -144,25 +140,68 @@ function predictHF() {
     fetch(URL, requestOptions)
         .then(response => response.json())
         .then((data) => {
-            let end = new Date();
-            show_text = `<font color="red">預測結果：</font>${data.answer}<br><font color="grey">耗時：${(end-start)/1000}秒</font>`
-            init(false)
-            Swal.fire({
-                icon: 'success',
-                title: '預測結果',
-                html: show_text,
-                showCancelButton: false,
-                confirmButtonText: '確定',
-            })
-        })
-        .catch((error) => {
-            init(false)
-            Swal.fire({
-                icon: 'error',
-                title: '超過使用次數，請稍後再試！',
-                showCancelButton: false,
-                confirmButtonText: '確定',
-            })
+            if ("error" in data) {
+                if (data.error == "Rate limit reached. Please log in or use your apiToken") {
+                    init(false)
+                    Swal.fire({
+                        icon: 'error',
+                        title: '超過使用次數，請稍後再試！',
+                        showCancelButton: false,
+                        confirmButtonText: '確定',
+                    })
+
+                } else {
+                    Swal.fire({
+                        title: '正在載入模型...',
+                        html: '預估剩餘時間： <b></b> 秒',
+                        timer: data.estimated_time * 1000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading()
+                            timerInterval = setInterval(() => {
+                                const content = Swal.getHtmlContainer()
+                                if (content) {
+                                    const b = content.querySelector('b')
+                                    if (b) {
+                                        b.textContent = parseInt(Swal.getTimerLeft() / 1000) + 1
+                                    }
+                                }
+                            }, 1000)
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval)
+                        }
+                    }).then((result) => {
+                        if (result.dismiss === Swal.DismissReason.timer) {
+                            fetch(URL, requestOptions)
+                                .then(response => response.json())
+                                .then((data => {
+                                    let end = new Date();
+                                    show_text = `<font color="red">預測結果：</font>${data.answer}<br><font color="grey">耗時：${(end-start)/1000}秒</font>`
+                                    init(false)
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: '預測結果',
+                                        html: show_text,
+                                        showCancelButton: false,
+                                        confirmButtonText: '確定',
+                                    })
+                                }))
+                        }
+                    })
+                }
+            } else {
+                let end = new Date();
+                show_text = `<font color="red">預測結果：</font>${data.answer}<br><font color="grey">耗時：${(end-start)/1000}秒</font>`
+                init(false)
+                Swal.fire({
+                    icon: 'success',
+                    title: '預測結果',
+                    html: show_text,
+                    showCancelButton: false,
+                    confirmButtonText: '確定',
+                })
+            }
         })
 }
 
