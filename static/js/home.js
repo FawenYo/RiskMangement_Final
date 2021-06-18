@@ -5,16 +5,22 @@ $(".generate-text").click(function() {
 });
 
 function autoGenerateText() {
-    $.ajax({
-        url: "https://api.howtobullshit.me/bullshit",
-        type: "post",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify({ Topic: "率慈是一位很棒的老師", MinLen: 700 }),
-        dataType: "text",
-        success: function(r) {
-            $("#content").html(r)
-        }
-    })
+    let sendData = {
+        "topic": "法遵科技",
+        "min_len": 700,
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        header: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sendData),
+    };
+
+    fetch("./api/text_generate", requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            $("#content").html(data.text)
+        })
 }
 /*----------------------------------------------------*/
 /* Quote Loop

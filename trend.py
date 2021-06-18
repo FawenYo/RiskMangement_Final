@@ -4,8 +4,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 
-regtech_df = pd.read_csv("regtech.csv")
-fintech_df = pd.read_csv("fintech.csv")
+regtech_df = pd.read_csv("data/regtech.csv")
+fintech_df = pd.read_csv("data/fintech.csv")
 
 dash_app = dash.Dash(
     __name__, requests_pathname_prefix="/trend/", external_stylesheets=[dbc.themes.LUX]
@@ -64,7 +64,3 @@ dash_app.layout = html.Div(
         ),
     ],
 )
-
-
-if __name__ == "__main__":
-    dash_app.run_server(debug=True)
